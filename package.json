@@ -8,7 +8,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "ng build --base-href \"/int-sys-energy-prediction-front-end/dist/\" && git add -f dist/ && echo \"Build completed. You can now commit your new release.\""
   },
   "private": true,
   "dependencies": {
