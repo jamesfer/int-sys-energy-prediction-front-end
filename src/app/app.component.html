@@ -6,56 +6,11 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-lg-9 slim-col">
-        <div class="card">
-          <div class="row">
-            <div class="col-sm-12">
-              <img src="https://camo.githubusercontent.com/b20f005d79ef8c46b17b9384d29f81a7aeed2c9b/687474703a2f2f692e696d6775722e636f6d2f6d576c416e64412e706e67" style="width: 100%; max-height: 500px">
-            </div>
-            <div class="col-sm-12">
-              <div class="card-body">
-                <span class="summary-data">
-                  <strong>Data points</strong> 3
-                </span>
-                <span class="summary-data">
-                  <strong>Mean absolute error</strong> 3.4 degrees
-                </span>
-                <span class="summary-data">
-                  <strong>Mean percent error</strong> 2%
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <app-graph></app-graph>
       </div>
 
       <div class="col-lg-3 slim-col">
-        <div class="card">
-          <div class="card-body">
-            <div class="form-group">
-              <label for="country-input">Country</label>
-              <select class="form-control" id="country-input">
-                <option value="">Select a country...</option>
-                <option value="UK">United Kingdom</option>
-                <option value="FR">France</option>
-                <option value="DE">Germany</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="interval-input">Interval</label>
-              <select class="form-control" id="interval-input">
-                <option value="">Select an interval...</option>
-                <option value="hourly">Hourly</option>
-                <option value="daily">Daily</option>
-                <option value="monthly">Monthly</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="lookback-window-input">Lookback window</label>
-              <input type="number" class="form-control" id="lookback-window-input" min="1" max="24" placeholder="Enter a lookback window...">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
+        <app-settings></app-settings>
       </div>
     </div>
   </div>

@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-body">
+    <div class="form-group">
+      <label for="country-input">Country</label>
+      <select [(ngModel)]="settings.country" class="form-control" id="country-input">
+        <option value="">All</option>
+        <option value="UK">United Kingdom</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="interval-input">Interval</label>
+      <select [(ngModel)]="settings.interval" class="form-control" id="interval-input">
+        <option value="">Select an interval...</option>
+        <option value="hourly">Hourly</option>
+        <option value="daily">Daily</option>
+        <option value="monthly">Monthly</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="lookback-window-input">Lookback window</label>
+      <input [(ngModel)]="settings.lookbackWindow" type="number" class="form-control" id="lookback-window-input" min="1" max="24" placeholder="Enter a lookback window...">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</div>
