@@ -8,8 +8,11 @@ import { AnonymousSubject, Subject } from 'rxjs/Subject';
 })
 export class ChartComponent implements OnDestroy {
   private unsubscribe: Subject<void> = new AnonymousSubject<void>();
+  public data: any;
 
-  constructor(protected energyData: EnergyDataService) {}
+  constructor(protected energyData: EnergyDataService) {
+    this.data = energyData.data();
+  }
 
   ngOnDestroy() {
     this.unsubscribe.next();

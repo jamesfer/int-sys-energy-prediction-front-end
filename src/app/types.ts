@@ -3,7 +3,7 @@ export type Interval = 'hourly' | 'daily' | 'monthly';
 export interface Settings {
   country: string;
   interval: Interval;
-  lookbackWindow: number;
+  lookback: number;
 }
 
 export interface DataSet<T = number> {
@@ -11,6 +11,7 @@ export interface DataSet<T = number> {
 }
 
 export interface PredictionResult {
-  predicted: DataSet;
-  actual: DataSet;
+  predicted: number[];
+  expected: number[];
+  keys: string[];
 }

@@ -9,30 +9,26 @@ export class EnergyStatsService {
   constructor(protected energyData: EnergyDataService) {}
 
   public numPoints(): Observable<number> {
-    return this.energyData.predictedData().map(predicted => {
-      return keys(predicted).length;
-    });
+    return this.energyData.predictedData().map(predicted => predicted.length);
   }
 
   public meanSquaredError(): Observable<number> {
     return this.energyData.dataPairs()
-      .withLatestFrom(this.numPoints(), (result, count) => ({ result, count }))
-      .map(({ result, count }) => {
-        return reduce(result, (errorSum, { predicted, actual }) => {
-          const error = predicted - actual;
-          return errorSum + error ** 2;
-        }, 0) / count;
-      });
+      .map(result => {
+        return reduce(result, (errorSum, { predicted, expected }) => {
+          return errorSum + (predicted - expected) ** 2;
+        }, 0);
+      })
+      .withLatestFrom(this.numPoints(), (errorSum, count) => errorSum / count);
   }
 
   public meanPercentError(): Observable<number> {
     return this.energyData.dataPairs()
-      .withLatestFrom(this.numPoints(), (result, count) => ({ result, count }))
-      .map(({ result, count }) => {
-        return reduce(result, (errorSum, { predicted, actual }) => {
-            const error = Math.abs(predicted - actual) / actual;
-            return errorSum + error;
-          }, 0) * 100 / count;
-      });
+      .map(result => {
+        return reduce(result, (errorSum, { predicted, expected }) => {
+            return errorSum + Math.abs(predicted - expected) / expected;
+          }, 0) * 100;
+      })
+      .withLatestFrom(this.numPoints(), (errorSum, count) => errorSum / count);
   }
 }

@@ -5,9 +5,9 @@ import 'rxjs/add/operator/startWith';
 
 @Injectable()
 export class SettingsService {
-  protected _country = '';
+  protected _country = 'DE';
   protected _interval: Interval = 'hourly';
-  protected _lookbackWindow = 3;
+  protected _lookback = 3;
   protected _settings = new Subject<Settings>();
 
   settings() {
@@ -30,19 +30,19 @@ export class SettingsService {
     this.emitUpdate();
   }
 
-  get lookbackWindow() {
-    return this._lookbackWindow;
+  get lookback() {
+    return this._lookback;
   }
-  set lookbackWindow(value: number) {
-    this._lookbackWindow = value;
+  set lookback(value: number) {
+    this._lookback = value;
     this.emitUpdate();
   }
 
-  private makeSettings() {
+  private makeSettings(): Settings {
     return {
       country: this.country,
       interval: this.interval,
-      lookbackWindow: this.lookbackWindow,
+      lookback: this.lookback,
     };
   }
 
