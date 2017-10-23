@@ -60,13 +60,11 @@ export class EnergyDataService implements OnDestroy {
     return this.settingsService.settings()
       .switchMap(params => {
         console.log('Requesting new data', params);
-        return this.http.get(environment.apiUrl, {
-          params: {
-            ...params,
-            start: '2015',
-            end: '2016',
-          },
-        });
+        if (params.lookback === 0) {
+          params.lookback = null;
+        }
+
+        return this.http.get(environment.apiUrl, { params });
       })
       .map(response => response.json())
       .publishReplay(1);

@@ -1,9 +1,12 @@
-export type Interval = 'hourly' | 'daily' | 'monthly';
+export type Interval = 'hourly' | 'monthly';
 
 export interface Settings {
   country: string;
   interval: Interval;
-  lookback: number;
+  lookback: number | null;
+  start: string;
+  end: string;
+  compressed: boolean;
 }
 
 export interface DataSet<T = number> {
