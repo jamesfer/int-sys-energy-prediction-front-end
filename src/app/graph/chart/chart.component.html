@@ -1,1 +1,9 @@
-<img src="https://camo.githubusercontent.com/b20f005d79ef8c46b17b9384d29f81a7aeed2c9b/687474703a2f2f692e696d6775722e636f6d2f6d576c416e64412e706e67" style="width: 100%; max-height: 500px">
+<div style="width: 100%">
+  <canvas *ngIf="datasets.length && labels.length" baseChart
+          [datasets]="datasets"
+          [labels]="labels"
+          [chartType]="'line'"></canvas>
+  <div class="display-2" style="line-height: 400px; text-align: center; opacity: 0.5;" *ngIf="!(datasets.length && labels.length)">
+    Loading
+  </div>
+</div>

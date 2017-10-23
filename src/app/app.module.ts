@@ -11,19 +11,21 @@ import { StatsComponent } from './graph/stats/stats.component';
 import { EnergyDataService } from './graph/energy-data.service';
 import { EnergyStatsService } from './graph/energy-stats.service';
 import { HttpModule } from '@angular/http';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    ChartsModule,
+  ],
   declarations: [
     AppComponent,
     SettingsComponent,
     GraphComponent,
     ChartComponent,
     StatsComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
   ],
   providers: [
     SettingsService,
