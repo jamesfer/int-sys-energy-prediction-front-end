@@ -14,6 +14,8 @@ export class ChartComponent implements OnDestroy {
   datasets: { data: number[], label: string }[] = [];
   labels: string[] = [];
 
+  type: string = 'line';
+
   constructor(protected energyData: EnergyDataService,
     protected settings: SettingsService
   ) {
@@ -37,6 +39,10 @@ export class ChartComponent implements OnDestroy {
           data: results.predicted,
         }];
       });
+  }
+
+  public changeType(_type: string) {
+    this.type = _type;
   }
 
   ngOnDestroy() {
