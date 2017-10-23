@@ -3,41 +3,17 @@ import { SettingsService } from '../settings/settings.service';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishReplay';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import { Http } from '@angular/http';
-import { DataSet, PredictionResult } from '../types';
+import { PredictionResult } from '../types';
 import { Observable } from 'rxjs/Observable';
 import { reduce, keys } from 'lodash';
 import { ConnectableObservable } from 'rxjs/Rx';
 import { Subscription } from 'rxjs/Subscription';
 import { environment } from '../../environments/environment';
+import { includes } from 'lodash';
 
-// function fakeData(): PredictionResult {
-//   return {
-//     expected: {
-//       '1': 1,
-//       '2': 2,
-//       '3': 3,
-//       '4': 4,
-//       '5': 5,
-//       '6': 6,
-//       '7': 7,
-//       '8': 8,
-//       '9': 9,
-//     },
-//     predicted: {
-//       '1': 1.1,
-//       '2': 2.2,
-//       '3': 3.1,
-//       '4': 3.9,
-//       '5': 4.5,
-//       '6': 5,
-//       '7': 6.3,
-//       '8': 7.8,
-//       '9': 9,
-//     }
-//   };
-// }
 
 @Injectable()
 export class EnergyDataService implements OnDestroy {
@@ -64,7 +40,14 @@ export class EnergyDataService implements OnDestroy {
           params.lookback = null;
         }
 
-        return this.http.get(environment.apiUrl, { params });
+        return this.http.get(environment.apiUrl, { params })
+          .catch(response => {
+            const data = response.json();
+            if (data.error) {
+              alert(data.error);
+            }
+            return Observable.of<Response>();
+          });
       })
       .map(response => response.json())
       .publishReplay(1);

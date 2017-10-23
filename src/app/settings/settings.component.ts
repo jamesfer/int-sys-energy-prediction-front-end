@@ -15,7 +15,7 @@ export class SettingsComponent implements DoCheck {
   startMonth = '01';
   startHour = '08';
   endYear = '2015';
-  endMonth = '01';
+  endMonth = '12';
   endHour = '20';
 
   private _settings: Settings | {} = {};
@@ -26,6 +26,10 @@ export class SettingsComponent implements DoCheck {
   ngDoCheck() {
     if (!this.compressed && !this.lookback) {
       this.lookback = 1;
+    }
+
+    if (this.interval === 'monthly' && this.compressed && this.lookback > 6) {
+      this.lookback = 6;
     }
 
     let start = '';
