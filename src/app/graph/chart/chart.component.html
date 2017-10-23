@@ -1,5 +1,5 @@
 <div style="width: 100%">
-    <div class="btn-group" role="group" aria-label="Chart Type">
+    <div *ngIf="datasets.length && labels.length" class="btn-group" role="group" aria-label="Chart Type" >
         <button type="button" class="btn btn-secondary" (click)="changeType('line')">Line</button>
         <button type="button" class="btn btn-secondary" (click)="changeType('bar')">Bar</button>
     </div>
@@ -8,6 +8,6 @@
           [labels]="labels"
           [chartType]="type"></canvas>
   <div class="display-2" style="line-height: 400px; text-align: center; opacity: 0.5;" *ngIf="!(datasets.length && labels.length)">
-    Loading
+      Loading
   </div>
 </div>
