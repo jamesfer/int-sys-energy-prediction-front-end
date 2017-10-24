@@ -7,6 +7,7 @@ export interface Settings {
   start: string;
   end: string;
   compressed: boolean;
+  train: boolean;
 }
 
 export interface DataSet<T = number> {

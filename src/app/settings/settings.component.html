@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <div class="form-group">
-      <label for="country-input">Country</label>
+      <label for="country-input"><i class="fa fa-globe" aria-hidden="true"></i> Country</label>
       <select [(ngModel)]="country" class="form-control" id="country-input">
         <option value="ALL">All</option>
         <option value="AT">Austria</option>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="form-group">
-      <label for="interval-input">Interval</label>
+      <label for="interval-input"><i class="fa fa-clock-o" aria-hidden="true"></i> Interval</label>
       <select [(ngModel)]="interval" class="form-control" id="interval-input">
         <option value="">Select an interval...</option>
         <option value="hourly">Hourly</option>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="form-group">
-      <label for="lookback-window-input">Lookback window</label>
+      <label for="lookback-window-input"><i class="fa fa-undo" aria-hidden="true"></i> Lookback window</label>
       <select [(ngModel)]="lookback" id="lookback-window-input" class="form-control">
         <option *ngIf="compressed" value="">None</option>
         <option value="1">1</option>
@@ -79,7 +79,7 @@
     </div>
 
     <div class="form-group">
-      <label>Start</label>
+      <label><i class="fa fa-hourglass-start" aria-hidden="true"></i> Start</label>
       <div class="row">
         <div class="col" *ngIf="!compressed">
           <select [(ngModel)]="startYear" class="form-control" id="start-year-input">
@@ -140,7 +140,7 @@
     </div>
 
     <div class="form-group">
-      <label>End</label>
+      <label><i class="fa fa-hourglass-end" aria-hidden="true"></i> End</label>
       <div class="row">
         <div class="col" *ngIf="!compressed">
           <select [(ngModel)]="endYear" class="form-control" id="end-year-input">
@@ -200,7 +200,9 @@
       </div>
     </div>
 
-
+    <button type="button" class="btn btn-primary" (click)="train()"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict</button>
+    <button type="button" class="btn btn-info" (click)="predict()"><i class="fa fa-eye" aria-hidden="true"></i> Predict Only</button>
+    <button type="button" class="btn btn-outline-danger" (click)="delete()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete Trained Data</button>
     <!--<button type="submit" class="btn btn-primary">Submit</button>-->
   </div>
 </div>

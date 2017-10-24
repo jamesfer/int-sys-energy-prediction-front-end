@@ -32,6 +32,19 @@ export class SettingsComponent implements DoCheck {
       this.lookback = 6;
     }
 
+    /* code to automatically update settings if a value has changed.
+    this.emitSettings({
+      country: this.country,
+      interval: this.interval,
+      lookback: this.lookback === '' ? null : this.lookback,
+      compressed: this.compressed,
+      start,
+      end,
+    });
+    */
+  }
+
+  private getStartEnd() {
     let start = '';
     let end = '';
     if (this.interval === 'hourly') {
@@ -51,15 +64,41 @@ export class SettingsComponent implements DoCheck {
         end = this.endYear;
       }
     }
+    return {
+      "start": start,
+      "end": end
+    }
+  }
 
-    this.emitSettings({
+  private getSettings(_train: boolean): Settings {
+    // get start and end values
+    const values = this.getStartEnd();
+    console.log(values.start);
+    console.log(values.end);
+
+    // return settings
+    return {
       country: this.country,
       interval: this.interval,
       lookback: this.lookback === '' ? null : this.lookback,
       compressed: this.compressed,
-      start,
-      end,
-    });
+      start: values.start,
+      end: values.end,
+      train: _train
+    }
+  }
+
+  train() {
+    this.settings.setSettings(this.getSettings(true));
+  }
+
+  predict() {
+    // just predict values
+    this.settings.setSettings(this.getSettings(false));
+  }
+
+  delete() {
+    this.settings.pushDelete();
   }
 
   emitSettings(settings: Settings) {

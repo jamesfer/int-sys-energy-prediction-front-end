@@ -18,7 +18,9 @@ import { includes } from 'lodash';
 @Injectable()
 export class EnergyDataService implements OnDestroy {
   private dataSubscription: Subscription;
+  private deleteSubscription: Subscription;
   private dataObs: ConnectableObservable<PredictionResult>;
+  private deleteObs: ConnectableObservable<Boolean>;
 
   constructor(
     protected settingsService: SettingsService,
@@ -26,10 +28,28 @@ export class EnergyDataService implements OnDestroy {
   ) {
     this.dataObs = this._data();
     this.dataSubscription = this.dataObs.connect();
+    this.deleteObs = this._delete();
+    this.deleteSubscription = this.deleteObs.connect();
   }
 
   ngOnDestroy() {
     this.dataSubscription.unsubscribe();
+  }
+
+  private _delete(): ConnectableObservable<Boolean> {
+    return this.settingsService.delete()
+      .switchMap(value => {
+        console.log('Requesting training data to be deleted');
+        return this.http.get(environment.apiUrl+'/delete')
+        .catch(response => {
+          const data = response.json();
+          if (data.error) {
+            alert(data.error);
+          }
+          return Observable.of<Response>();
+        });
+      }).map(response => response.json())
+      .publishReplay(1);
   }
 
   private _data(): ConnectableObservable<PredictionResult> {
@@ -55,6 +75,10 @@ export class EnergyDataService implements OnDestroy {
 
   public data(): Observable<PredictionResult> {
     return this.dataObs;
+  }
+
+  public delete(): Observable<Boolean> {
+    return this.deleteObs;
   }
 
   public predictedData() {
