@@ -12,6 +12,7 @@ import { EnergyDataService } from './graph/energy-data.service';
 import { EnergyStatsService } from './graph/energy-stats.service';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { ChartsModule } from 'ng2-charts';
     GraphComponent,
     ChartComponent,
     StatsComponent,
+    HistoryComponent,
   ],
   providers: [
     SettingsService,
