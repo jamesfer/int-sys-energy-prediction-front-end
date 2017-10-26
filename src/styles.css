@@ -1,5 +1,11 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .contents {
   margin-top: 20px;
+}
+
+.card {
+  margin: 20px;
 }
 
 .summary-data {

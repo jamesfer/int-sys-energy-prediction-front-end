@@ -99,6 +99,7 @@ export class SettingsComponent implements DoCheck {
 
   delete() {
     this.settings.pushDelete();
+    alert('Model traing data has been deleted from the server!');
   }
 
   emitSettings(settings: Settings) {

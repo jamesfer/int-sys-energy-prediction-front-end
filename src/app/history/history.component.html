@@ -2,18 +2,19 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th><i class="fa fa-list-ol" aria-hidden="true"></i> Data Points</th>
         <th><i class="fa fa-globe" aria-hidden="true"></i> Country</th>
         <th><i class="fa fa-clock-o" aria-hidden="true"></i> Interval</th>
         <th><i class="fa fa-compress" aria-hidden="true"></i> Compressed</th>
         <th><i class="fa fa-undo" aria-hidden="true"></i> Lookback</th>
         <th><i class="fa fa-database" aria-hidden="true"></i> Model State</th>
         <th><i class="fa fa-balance-scale" aria-hidden="true"></i> Action</th>
+        <th><i class="fa fa-list-ol" aria-hidden="true"></i> Data Points</th>
+        <th><i class="fa fa-percent" aria-hidden="true"></i> Mean Percent Error</th>
+        <th><i class="fa fa-sort-numeric-desc" aria-hidden="true"></i> Mean Squared Error</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let prediction of predictions">
-        <td>{{prediction.labels.length}}</td>
+      <tr *ngFor="let prediction of predictions" (click)="rowClicked(prediction)" style="cursor: pointer;">
         <td>{{prediction.settings.country}}</td>
         <td class="capitalize">{{prediction.settings.interval}}</td>
         <td>
@@ -32,6 +33,9 @@
           <span *ngIf="prediction.settings.train"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict</span>
           <span *ngIf="!prediction.settings.train"><i class="fa fa-eye" aria-hidden="true"></i> Predict Only</span>
         </td>
+        <td>{{prediction.labels.length}}</td>
+        <td>{{prediction.meanPercentError.toFixed(2)}}%</td>
+        <td>{{prediction.meanSquaredError.toFixed(2)}} watts<span style="vertical-align: super; font-size: 65%">2</span></td>
       </tr>
     </tbody>
   </table>

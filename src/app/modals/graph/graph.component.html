@@ -1,0 +1,22 @@
+<div mat-dialog-title>Prediction History Graph</div>
+<div style="width: 100%">
+    <div *ngIf="datasets.length && labels.length" class="btn-group" role="group" aria-label="Chart Type" >
+        <button type="button" class="btn btn-secondary" (click)="changeType('line')">Line</button>
+        <button type="button" class="btn btn-secondary" (click)="changeType('bar')">Bar</button>
+    </div>
+  <canvas *ngIf="datasets.length && labels.length" baseChart
+          [datasets]="datasets"
+          [labels]="labels"
+          [chartType]="type"></canvas>
+</div>
+<div *ngIf="datasets.length && labels.length">
+    <span class="summary-data">
+        <strong>Data points</strong> {{ datasets.length }}
+      </span>
+      <span class="summary-data">
+        <strong>Mean squared error</strong> {{ meanSquaredError.toFixed(2) }} watts<span style="vertical-align: super; font-size: 65%">2</span>
+      </span>
+      <span class="summary-data">
+        <strong>Mean percent error</strong> {{ meanPercentError.toFixed(2) }}%
+      </span>
+</div>

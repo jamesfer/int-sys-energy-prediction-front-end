@@ -27,4 +27,6 @@ export interface GraphResult {
   datasets: { data: number[], label: string }[];
   settings: Settings;
   trained: boolean;
+  meanPercentError: number;
+  meanSquaredError: number;
 }

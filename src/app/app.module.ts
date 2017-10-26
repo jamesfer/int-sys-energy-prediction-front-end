@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -13,13 +15,18 @@ import { EnergyStatsService } from './graph/energy-stats.service';
 import { HttpModule } from '@angular/http';
 import { ChartsModule } from 'ng2-charts';
 import { HistoryComponent } from './history/history.component';
+import { GraphModalComponent } from './modals/graph/graph.component'
+
+import { MatDialogModule } from '@angular/material'
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     ChartsModule,
+    MatDialogModule
   ],
   declarations: [
     AppComponent,
@@ -28,11 +35,15 @@ import { HistoryComponent } from './history/history.component';
     ChartComponent,
     StatsComponent,
     HistoryComponent,
+    GraphModalComponent
   ],
   providers: [
     SettingsService,
     EnergyDataService,
     EnergyStatsService,
+  ],
+  entryComponents: [
+    GraphModalComponent
   ],
   bootstrap: [AppComponent]
 })
