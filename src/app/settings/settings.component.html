@@ -199,7 +199,11 @@
         </div>
       </div>
     </div>
-
+    <div class="form-check">
+        <label class="form-check-label">
+          <input [(ngModel)]="tts" type="checkbox" class="form-check-input"> Reduce/Shuffle Train Data
+        </label>
+    </div>
     <button type="button" class="btn btn-primary" (click)="train()"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict</button>
     <button type="button" class="btn btn-info" (click)="predict()"><i class="fa fa-eye" aria-hidden="true"></i> Predict Only</button>
     <button type="button" class="btn btn-outline-danger" (click)="delete()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete Trained Data</button>

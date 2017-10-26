@@ -17,6 +17,7 @@ export class SettingsComponent implements DoCheck {
   endYear = '2015';
   endMonth = '12';
   endHour = '20';
+  tts = true;
 
   private _settings: Settings | {} = {};
 
@@ -84,7 +85,8 @@ export class SettingsComponent implements DoCheck {
       compressed: this.compressed,
       start: values.start,
       end: values.end,
-      train: _train
+      train: _train,
+      tts: this.tts
     }
   }
 

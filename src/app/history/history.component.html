@@ -30,7 +30,7 @@
           <span *ngIf="!prediction.trained">Untrained</span>
         </td>
         <td>
-          <span *ngIf="prediction.settings.train"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict</span>
+          <span *ngIf="prediction.settings.train"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict <span *ngIf="prediction.settings.tts">(R/S)</span></span>
           <span *ngIf="!prediction.settings.train"><i class="fa fa-eye" aria-hidden="true"></i> Predict Only</span>
         </td>
         <td>{{prediction.labels.length}}</td>

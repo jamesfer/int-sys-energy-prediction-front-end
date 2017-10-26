@@ -8,6 +8,7 @@ export interface Settings {
   end: string;
   compressed: boolean;
   train: boolean;
+  tts: boolean;
 }
 
 export interface DataSet<T = number> {
@@ -20,6 +21,7 @@ export interface PredictionResult {
   keys: string[];
   settings: Settings;
   trained: boolean;
+  ems: number;
 }
 
 export interface GraphResult {
