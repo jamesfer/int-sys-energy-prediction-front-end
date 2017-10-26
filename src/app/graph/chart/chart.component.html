@@ -7,7 +7,10 @@
           [datasets]="datasets"
           [labels]="labels"
           [chartType]="type"></canvas>
-  <div class="display-2" style="line-height: 400px; text-align: center; opacity: 0.5;" *ngIf="!(datasets.length && labels.length)">
+  <div class="display-2" style="line-height: 400px; text-align: center; opacity: 0.5;" *ngIf="!(datasets.length && labels.length) && loaded">
       Loading
+  </div>
+  <div class="display-2" style="line-height: 400px; text-align: center; opacity: 0.5;" *ngIf="!(datasets.length && labels.length) && !loaded">
+        Make a prediction ->
   </div>
 </div>

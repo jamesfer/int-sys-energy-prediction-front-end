@@ -16,6 +16,8 @@ export class ChartComponent implements OnDestroy {
 
   type: string = 'line';
 
+  loaded: boolean = false;
+
   constructor(protected energyData: EnergyDataService,
     protected settings: SettingsService
   ) {
@@ -29,6 +31,7 @@ export class ChartComponent implements OnDestroy {
     energyData.data()
       .takeUntil(this.unsubscribe)
       .subscribe(results => {
+        this.loaded = true;
         console.log('Received', results);
         this.labels = results.keys;
         this.datasets = [{
