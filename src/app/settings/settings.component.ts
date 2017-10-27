@@ -19,6 +19,9 @@ export class SettingsComponent implements DoCheck {
   endHour = '20';
   tts = true;
 
+  future: boolean;
+  futureFromHours: string;
+
   private _settings: Settings | {} = {};
 
 
@@ -31,6 +34,11 @@ export class SettingsComponent implements DoCheck {
 
     if (this.interval === 'monthly' && this.compressed && this.lookback > 6) {
       this.lookback = 6;
+    }
+
+    if (this.future) {
+      this.compressed = false;
+      this.interval = 'hourly';
     }
 
     /* code to automatically update settings if a value has changed.
@@ -77,6 +85,10 @@ export class SettingsComponent implements DoCheck {
     console.log(values.start);
     console.log(values.end);
 
+    // create date, join date to hour (YYYY/MM/DD HH:00:00)
+
+    
+
     // return settings
     return {
       country: this.country,
@@ -86,7 +98,9 @@ export class SettingsComponent implements DoCheck {
       start: values.start,
       end: values.end,
       train: _train,
-      tts: this.tts
+      tts: this.tts,
+      future: this.future,
+      futureFromHours: this.futureFromHours
     }
   }
 

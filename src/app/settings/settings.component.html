@@ -78,7 +78,7 @@
       </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!future">
       <label><i class="fa fa-hourglass-start" aria-hidden="true"></i> Start</label>
       <div class="row">
         <div class="col" *ngIf="!compressed">
@@ -139,7 +139,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" *ngIf="!future">
       <label><i class="fa fa-hourglass-end" aria-hidden="true"></i> End</label>
       <div class="row">
         <div class="col" *ngIf="!compressed">
@@ -199,12 +199,22 @@
         </div>
       </div>
     </div>
-    <div class="form-check">
+    <div class="form-group">
+        <label class="form-check-label">
+            <input [(ngModel)]="future" type="checkbox" class="form-check-input"> Future Prediction
+        </label>
+        <select [(ngModel)]="futureFromHours" class="form-control">
+            <option value="1" selected="selected">Hour ahead from now</option>
+            <option value="24">Day ahead from now</option>
+            <option value="168">Week ahead from now</option>
+          </select>
+    </div>
+    <div class="form-check" *ngIf="!future">
         <label class="form-check-label">
           <input [(ngModel)]="tts" type="checkbox" class="form-check-input"> Reduce/Shuffle Train Data
         </label>
     </div>
-    <button type="button" class="btn btn-primary" (click)="train()"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict</button>
+    <button type="button" *ngIf="!future" class="btn btn-primary" (click)="train()"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict</button>
     <button type="button" class="btn btn-info" (click)="predict()"><i class="fa fa-eye" aria-hidden="true"></i> Predict Only</button>
     <button type="button" class="btn btn-outline-danger" (click)="delete()"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete Trained Data</button>
     <!--<button type="submit" class="btn btn-primary">Submit</button>-->

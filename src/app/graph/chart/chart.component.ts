@@ -34,13 +34,20 @@ export class ChartComponent implements OnDestroy {
         this.loaded = true;
         console.log('Received', results);
         this.labels = results.keys;
-        this.datasets = [{
-          label: 'Actual',
-          data: results.expected,
-        }, {
-          label: 'Predicted',
-          data: results.predicted,
-        }];
+        if (results.settings.future) {
+          this.datasets = [{
+            label: 'Predicted - ' + results.settings.futureFromHours + ' hours from now',
+            data: results.predicted,
+          }];
+        } else {
+          this.datasets = [{
+            label: 'Actual',
+            data: results.expected,
+          }, {
+            label: 'Predicted',
+            data: results.predicted,
+          }];
+        }
       });
   }
 

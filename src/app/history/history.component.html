@@ -7,6 +7,7 @@
         <th><i class="fa fa-compress" aria-hidden="true"></i> Compressed</th>
         <th><i class="fa fa-undo" aria-hidden="true"></i> Lookback</th>
         <th><i class="fa fa-database" aria-hidden="true"></i> Model State</th>
+        <th><i class="fa fa-info" aria-hidden="true"></i> Prediction Type</th>
         <th><i class="fa fa-balance-scale" aria-hidden="true"></i> Action</th>
         <th><i class="fa fa-list-ol" aria-hidden="true"></i> Data Points</th>
         <th><i class="fa fa-percent" aria-hidden="true"></i> Mean Percent Error</th>
@@ -28,6 +29,10 @@
         <td>
           <span *ngIf="prediction.trained">Trained</span>
           <span *ngIf="!prediction.trained">Untrained</span>
+        </td>
+        <td>
+            <span *ngIf="prediction.settings.future"><i class="fa fa-line-chart" aria-hidden="true"></i> Future</span>
+            <span *ngIf="!prediction.settings.future"><i class="fa fa-history" aria-hidden="true"></i> Historic</span>
         </td>
         <td>
           <span *ngIf="prediction.settings.train"><i class="fa fa-line-chart" aria-hidden="true"></i> Train & Predict <span *ngIf="prediction.settings.tts">(R/S)</span></span>

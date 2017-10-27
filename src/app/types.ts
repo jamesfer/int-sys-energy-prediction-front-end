@@ -9,6 +9,8 @@ export interface Settings {
   compressed: boolean;
   train: boolean;
   tts: boolean;
+  future: boolean;
+  futureFromHours: string;
 }
 
 export interface DataSet<T = number> {

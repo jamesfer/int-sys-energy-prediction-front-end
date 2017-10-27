@@ -44,15 +44,24 @@ export class HistoryComponent implements OnInit {
 
       Observable.zip(meanPercentObs, meanSquaredObs, (percent: number, squared: number) => ({percent,squared}))
       .subscribe(pair => {
-        const graph:GraphResult = {
-          labels: results.keys,
-          datasets: [{
+        var _datasets = [];
+        if (results.settings.future) {
+          _datasets = [{
+            label: 'Predicted - ' + results.settings.futureFromHours + ' hours from now',
+            data: results.predicted,
+          }];
+        } else {
+          _datasets = [{
             label: 'Actual',
             data: results.expected,
           }, {
             label: 'Predicted',
             data: results.predicted,
-          }],
+          }];
+        }
+        const graph:GraphResult = {
+          labels: results.keys,
+          datasets: _datasets,
           settings: results.settings,
           trained: results.trained,
           meanPercentError: pair.percent,
